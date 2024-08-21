@@ -1,0 +1,2 @@
+echo pytest-cov >> requirements.txt
+echo codecov >> requirements.txt
