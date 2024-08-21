@@ -1,0 +1,30 @@
+# .github/workflows/python-app.yml
+name: Python application
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'  # Specify the Python version you want to use
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest-cov codecov
+
+    - name: Run tests with coverage
+      run: |
+        pytest --cov=my_module  # Replace 'my_module' with your module
+        coverage report
+        coverage html
+        codecov
